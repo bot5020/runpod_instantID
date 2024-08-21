@@ -207,7 +207,7 @@ def apply_style(style_name: str, positive: str, negative: str = "") -> tuple[str
     return p.replace('{prompt}', positive), n + ' ' + negative
 
 
-def generate_image(
+async def generate_image(
         job_id,
         model,
         face_image,
@@ -310,7 +310,7 @@ async def handler(job):
 
         payload = validated_input['validated_input']
 
-        images = generate_image(
+        images = await generate_image(
             job['id'],
             payload.get('model'),
             payload.get('face_image'),
